@@ -1,29 +1,35 @@
 <script>
-    let asiat = ['Leipä', 'Tomaatti', 'Kurkku'];
+    import {enhance} from '$app/forms';
 
-    let uusiAsia = '';
-
-    function lisääAsia() {
-        asiat.push(uusiAsia);
-        asiat = asiat;
-        uusiAsia = '';
-    }
+    export let data;
+    export let form;
 </script>
 
 <div class="komponentti">
     <h1>Kauppalista</h1>
     <ul>
-        {#each asiat as asia}
+        {#each data.asiat as asia}
             <li>
                 <input type="checkbox" />
                 {asia}
             </li>
         {/each}
     </ul>
-    <form class="uusi">
+    {#if form?.error}
+        <p class="error">{form.error}</p>
+    {/if}
+    <form class="uusi" method="POST" action="?/lisääAsia" use:enhance>
         <label for="uusi-asia">Lisää uusi asia:</label>
-        <input id="uusi-asia" type="text" bind:value={uusiAsia} />
-        <button on:click|preventDefault={lisääAsia}>Lisää</button>
+        <!-- svelte-ignore a11y-autofocus -->
+        <input
+            id="uusi-asia"
+            name="asia"
+            type="text"
+            value={form?.asia ?? ''}
+            required
+            autofocus
+        />
+        <button>Lisää</button>
     </form>
 </div>
 
