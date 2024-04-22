@@ -1,5 +1,6 @@
 <script>
     import {enhance} from '$app/forms';
+    import Kauppalista from '$lib/components/Kauppalista.svelte';
 
     export let data;
     export let form;
@@ -7,14 +8,7 @@
 
 <div class="komponentti">
     <h1>Kauppalista</h1>
-    <ul>
-        {#each data.asiat as asia}
-            <li>
-                <input type="checkbox" />
-                {asia}
-            </li>
-        {/each}
-    </ul>
+    <Kauppalista asiat={data.asiat}/>
     {#if form?.error}
         <p class="error">{form.error}</p>
     {/if}
@@ -41,12 +35,6 @@
     }
     h1 {
         font-size: 200%;
-    }
-    ul {
-        font-size: 150%;
-    }
-    li {
-        list-style-type: none;
     }
     .uusi {
         font-size: 125%;
