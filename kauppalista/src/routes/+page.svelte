@@ -29,7 +29,7 @@
 
 <style>
     .komponentti {
-        color: hwb(247 12% 74%);
+        color: hwb(120 5% 70%);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 12px;
     }
