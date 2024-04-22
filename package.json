@@ -1,0 +1,19 @@
+{
+  "name": "kauppalista24",
+  "version": "0.1.0",
+  "description": "Kauppalista",
+  "main": "index.js",
+  "scripts": {
+    "download-pocketbase": "python download-pocketbase.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24/issues"
+  },
+  "homepage": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24#readme"
+}
