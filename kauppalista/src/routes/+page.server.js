@@ -1,8 +1,10 @@
 import {fail} from '@sveltejs/kit';
+import {lataaKauppalista, luoKauppalistanAsia} from '$lib/api';
 
-const asiat = ['Leipä', 'Tomaatti', 'Kurkku'];
+const LISTA_ID = '9j3zwlkpz05sti8';  // TODO: Poista kovakoodattu LISTA_ID
 
-export function load() {
+export async function load() {
+    const asiat = await lataaKauppalista(LISTA_ID);
     return {asiat};
 }
 
@@ -10,17 +12,10 @@ export const actions = {
     lisääAsia: async ({request}) => {
         const data = await request.formData();
         const asia = data.get('asia')?.trim() ?? '';
-        if (!asia) {
-            return fail(422, {
-                error: 'Asia ei saa olla tyhjä',
-            });
+        try {
+            await luoKauppalistanAsia(LISTA_ID, asia);
+        } catch (error) {
+            return fail(422, {error: error.message});
         }
-        if (asiat.includes(asia)) {
-            return fail(422, {
-                asia,
-                error: 'Asia oli jo listalla',
-            });
-        }
-        asiat.push(asia);
     },
 };
