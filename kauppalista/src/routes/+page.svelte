@@ -1,7 +1,10 @@
 <script>
     import {enhance} from '$app/forms';
     import Kauppalista from '$lib/components/Kauppalista.svelte';
-    import {poistaKauppalistanAsia} from '$lib/api';
+    import {
+        poistaKauppalistanAsia,
+        asetaKauppalistanAsianValmis,
+    } from '$lib/api';
 
     export let data;
     export let form;
@@ -13,11 +16,22 @@
         data.asiat = data.asiat.filter((x) => x.teksti !== teksti);
         await poistoPromise;
     }
+
+    async function käsitteleValmisMuutos(e) {
+        const {teksti, valmis} = e.detail;
+        console.log('Asia', teksti, 'muuttui valmis-tilaan:', valmis);
+        const {LISTA_ID} = data;
+        await asetaKauppalistanAsianValmis(LISTA_ID, teksti, valmis);
+    }
 </script>
 
 <div class="komponentti">
     <h1>Kauppalista</h1>
-    <Kauppalista asiat={data.asiat} on:poista-asia={poistaAsia} />
+    <Kauppalista
+        asiat={data.asiat}
+        on:poista-asia={poistaAsia}
+        on:asian-valmis-muuttui={käsitteleValmisMuutos}
+    />
     {#if form?.error}
         <p class="error">{form.error}</p>
     {/if}

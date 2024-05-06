@@ -27,6 +27,13 @@ export async function poistaKauppalistanAsia(listaId, teksti) {
     await pb.collection('kauppalistan_asiat').delete(asia.id);
 }
 
+export async function asetaKauppalistanAsianValmis(listaId, teksti, valmis) {
+    const pb = getPocketBase();
+    const asia = await haeKauppalistanAsia(pb, listaId, teksti);
+    if (!asia) return;
+    await pb.collection('kauppalistan_asiat').update(asia.id, {valmis});
+}
+
 async function haeKauppalistanAsia(pb, listaId, teksti) {
     const asiat = pb.collection('kauppalistan_asiat');
     const response = await asiat.getList(1, 1, {
