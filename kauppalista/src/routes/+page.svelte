@@ -19,9 +19,7 @@
 
     async function käsitteleValmisMuutos(e) {
         const {teksti, valmis} = e.detail;
-        console.log('Asia', teksti, 'muuttui valmis-tilaan:', valmis);
-        const {LISTA_ID} = data;
-        await asetaKauppalistanAsianValmis(LISTA_ID, teksti, valmis);
+        await asetaKauppalistanAsianValmis(data.LISTA_ID, teksti, valmis);
     }
 </script>
 
