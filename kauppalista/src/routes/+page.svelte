@@ -1,14 +1,23 @@
 <script>
     import {enhance} from '$app/forms';
     import Kauppalista from '$lib/components/Kauppalista.svelte';
+    import {poistaKauppalistanAsia} from '$lib/api';
 
     export let data;
     export let form;
+
+    async function poistaAsia(e) {
+        const {teksti} = e.detail; // SAMA KUIN: teksti = e.detail.teksti
+        const {LISTA_ID} = data; // SAMA KUIN: LISTA_ID = data.LISTA_ID
+        const poistoPromise = poistaKauppalistanAsia(LISTA_ID, teksti);
+        data.asiat = data.asiat.filter((x) => x !== teksti);
+        await poistoPromise;
+    }
 </script>
 
 <div class="komponentti">
     <h1>Kauppalista</h1>
-    <Kauppalista asiat={data.asiat}/>
+    <Kauppalista asiat={data.asiat} on:poista-asia={poistaAsia} />
     {#if form?.error}
         <p class="error">{form.error}</p>
     {/if}
