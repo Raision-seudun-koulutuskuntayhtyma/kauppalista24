@@ -1,13 +1,27 @@
 <script>
-    import {enhance} from '$app/forms';
     import Kauppalista from '$lib/components/Kauppalista.svelte';
     import {
+        luoKauppalistanAsia,
         poistaKauppalistanAsia,
         asetaKauppalistanAsianValmis,
     } from '$lib/api';
 
     export let data;
-    export let form;
+    let uusiAsiaTeksti = '';
+    let uusiAsiaVirhe = null;
+
+    async function lisääAsia(e) {
+        const teksti = uusiAsiaTeksti.trim();
+        const asia = {id: String(Math.random()), teksti};
+        uusiAsiaTeksti = '';
+        data.asiat = [...data.asiat, asia];
+        try {
+            await luoKauppalistanAsia(data.LISTA_ID, teksti);
+            uusiAsiaVirhe = '';
+        } catch (error) {
+            uusiAsiaVirhe = error.message;
+        }
+    }
 
     async function poistaAsia(e) {
         const {teksti} = e.detail; // SAMA KUIN: teksti = e.detail.teksti
@@ -30,17 +44,17 @@
         on:poista-asia={poistaAsia}
         on:asian-valmis-muuttui={käsitteleValmisMuutos}
     />
-    {#if form?.error}
-        <p class="error">{form.error}</p>
+    {#if uusiAsiaVirhe}
+        <p class="error">{uusiAsiaVirhe}</p>
     {/if}
-    <form class="uusi" method="POST" action="?/lisääAsia" use:enhance>
+    <form class="uusi" on:submit={lisääAsia}>
         <label for="uusi-asia">Lisää uusi asia:</label>
         <!-- svelte-ignore a11y-autofocus -->
         <input
             id="uusi-asia"
             name="asia"
             type="text"
-            value={form?.asia ?? ''}
+            bind:value={uusiAsiaTeksti}
             required
             autofocus
         />
