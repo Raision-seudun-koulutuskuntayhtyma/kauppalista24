@@ -8,7 +8,7 @@ export async function lataaKauppalista(listaId) {
         filter: pb.filter('lista={:listaId}', {listaId}),
         sort: 'nro',
     });
-    return response.items.map((x) => x.teksti);
+    return response.items;
 }
 
 export async function luoKauppalistanAsia(listaId, teksti) {

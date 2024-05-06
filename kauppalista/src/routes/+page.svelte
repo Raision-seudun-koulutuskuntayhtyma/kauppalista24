@@ -10,7 +10,7 @@
         const {teksti} = e.detail; // SAMA KUIN: teksti = e.detail.teksti
         const {LISTA_ID} = data; // SAMA KUIN: LISTA_ID = data.LISTA_ID
         const poistoPromise = poistaKauppalistanAsia(LISTA_ID, teksti);
-        data.asiat = data.asiat.filter((x) => x !== teksti);
+        data.asiat = data.asiat.filter((x) => x.teksti !== teksti);
         await poistoPromise;
     }
 </script>
