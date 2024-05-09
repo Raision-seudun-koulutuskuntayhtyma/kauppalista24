@@ -1,0 +1,1 @@
+- TODO: Kauppalistan iteemin poistaminen muuttaa muiden rivejen valmis-tilaa
