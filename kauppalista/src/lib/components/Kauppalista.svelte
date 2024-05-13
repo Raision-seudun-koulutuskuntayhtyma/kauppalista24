@@ -1,4 +1,5 @@
 <script>
+    import {ilmoitus} from '../stores';
     import Asia from './Asia.svelte';
 
     export let asiat;
@@ -8,10 +9,12 @@
     function lisääAsia() {
         const asia = {id: String(Math.random()), teksti: uusiAsiaTeksti};
         asiat = [...asiat, asia];
+        $ilmoitus = `Lisätty listalle: ${uusiAsiaTeksti}`;
         uusiAsiaTeksti = '';
     }
 
     function poistaAsia(e) {
+        $ilmoitus = `Poistettu listalta: ${e.detail.teksti}`;
         asiat = asiat.filter((x) => x.id !== e.detail.id);
     }
 
@@ -19,6 +22,8 @@
         const asia = e.detail;
         asia.valmis = !asia.valmis;
         asiat = asiat;
+        if (asia.valmis) $ilmoitus = `Asetettu valmiiksi: ${asia.teksti}`;
+        else $ilmoitus = `Asetettu keskeneräiseksi: ${asia.teksti}`;
     }
 </script>
 
