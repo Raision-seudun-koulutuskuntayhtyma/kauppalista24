@@ -1,4 +1,5 @@
 <script>
+    import Ilmoitus from '$lib/components/Ilmoitus.svelte';
     import Kauppalista from '$lib/components/Kauppalista.svelte';
     import {
         luoKauppalistanAsia,
@@ -37,6 +38,7 @@
     }
 </script>
 
+<Ilmoitus />
 <div class="komponentti">
     <h1>Kauppalista</h1>
     <Kauppalista
