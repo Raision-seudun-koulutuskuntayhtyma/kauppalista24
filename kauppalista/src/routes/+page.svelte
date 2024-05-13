@@ -1,40 +1,26 @@
 <script>
     import Ilmoitus from '$lib/components/Ilmoitus.svelte';
     import Kauppalista from '$lib/components/Kauppalista.svelte';
-    import {
-        luoKauppalistanAsia,
-        poistaKauppalistanAsia,
-        asetaKauppalistanAsianValmis,
-    } from '$lib/api';
+    import {kauppalista} from '$lib/stores.js';
 
-    export let data;
     let uusiAsiaTeksti = '';
     let uusiAsiaVirhe = null;
 
-    async function lisääAsia(e) {
+    function lisääAsia(e) {
         const teksti = uusiAsiaTeksti.trim();
         const asia = {id: String(Math.random()), teksti};
         uusiAsiaTeksti = '';
-        data.asiat = [...data.asiat, asia];
-        try {
-            await luoKauppalistanAsia(data.LISTA_ID, teksti);
-            uusiAsiaVirhe = '';
-        } catch (error) {
-            uusiAsiaVirhe = error.message;
-        }
+        $kauppalista = [...$kauppalista, asia];
     }
 
-    async function poistaAsia(e) {
-        const {teksti} = e.detail; // SAMA KUIN: teksti = e.detail.teksti
-        const {LISTA_ID} = data; // SAMA KUIN: LISTA_ID = data.LISTA_ID
-        const poistoPromise = poistaKauppalistanAsia(LISTA_ID, teksti);
-        data.asiat = data.asiat.filter((x) => x.teksti !== teksti);
-        await poistoPromise;
+    function poistaAsia(e) {
+        $kauppalista = $kauppalista.filter((x) => x.id !== e.detail.id);
     }
 
-    async function käsitteleValmisMuutos(e) {
-        const {teksti, valmis} = e.detail;
-        await asetaKauppalistanAsianValmis(data.LISTA_ID, teksti, valmis);
+    function käsitteleValmisMuutos(e) {
+        const asia = e.detail;
+        asia.valmis = !asia.valmis;
+        $kauppalista = $kauppalista;
     }
 </script>
 
@@ -42,7 +28,7 @@
 <div class="komponentti">
     <h1>Kauppalista</h1>
     <Kauppalista
-        asiat={data.asiat}
+        asiat={$kauppalista}
         on:poista-asia={poistaAsia}
         on:asian-valmis-muuttui={käsitteleValmisMuutos}
     />

@@ -6,12 +6,7 @@
 
 <ul>
     {#each asiat as asia (asia.id)}
-        <Asia
-            teksti={asia.teksti}
-            valmis={asia.valmis}
-            on:poista-asia
-            on:asian-valmis-muuttui
-        />
+        <Asia {asia} on:poista-asia on:asian-valmis-muuttui />
     {/each}
 </ul>
 
