@@ -6,8 +6,10 @@
 
     let uusiAsiaTeksti = '';
 
+    const luoId = () => crypto.randomUUID().substring(0, 15);
+
     function lisääAsia() {
-        const asia = {id: String(Math.random()), teksti: uusiAsiaTeksti};
+        const asia = {id: luoId(), teksti: uusiAsiaTeksti};
         asiat = [...asiat, asia];
         $ilmoitus = `Lisätty listalle: ${uusiAsiaTeksti}`;
         uusiAsiaTeksti = '';

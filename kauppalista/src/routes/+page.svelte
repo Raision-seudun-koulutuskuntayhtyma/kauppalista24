@@ -5,4 +5,10 @@
 </script>
 
 <Ilmoitus />
-<Kauppalista bind:asiat={$kauppalista} />
+{#if $kauppalista.tila == 'valmis'}
+    <Kauppalista bind:asiat={$kauppalista.iteemit} />
+{:else if $kauppalista.tila == 'ladataan'}
+    <div>Ladataan...</div>
+{:else if $kauppalista.tila == 'virhe'}
+    <div>Virhe: {$kauppalista.virhe}</div>
+{/if}
