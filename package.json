@@ -4,7 +4,9 @@
   "description": "Kauppalista",
   "main": "index.js",
   "scripts": {
-    "download-pocketbase": "python download-pocketbase.py"
+    "download-pocketbase": "python download-pocketbase.py",
+    "pb": "cd pocketbase && ./pocketbase serve",
+    "pb-dev": "cd pocketbase && ./pocketbase serve --dev"
   },
   "repository": {
     "type": "git",
