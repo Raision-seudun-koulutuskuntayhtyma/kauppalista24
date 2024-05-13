@@ -1,1 +1,1 @@
-- TODO: Kauppalistan iteemin poistaminen muuttaa muiden rivejen valmis-tilaa
+- TODO: Kauppalistan iteemin poistaminen muuttaa muiden rivien valmis-tilaa
