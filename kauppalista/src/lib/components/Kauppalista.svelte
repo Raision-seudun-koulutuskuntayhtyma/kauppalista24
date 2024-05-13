@@ -1,28 +1,39 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
-
     import Asia from './Asia.svelte';
 
     export let asiat;
 
-    const dispatch = createEventDispatcher();
     let uusiAsiaTeksti = '';
+
+    function lisääAsia() {
+        const asia = {id: String(Math.random()), teksti: uusiAsiaTeksti};
+        asiat = [...asiat, asia];
+        uusiAsiaTeksti = '';
+    }
+
+    function poistaAsia(e) {
+        asiat = asiat.filter((x) => x.id !== e.detail.id);
+    }
+
+    function käsitteleValmisMuutos(e) {
+        const asia = e.detail;
+        asia.valmis = !asia.valmis;
+        asiat = asiat;
+    }
 </script>
 
 <div class="kauppalista">
     <h1>Kauppalista</h1>
     <ul>
         {#each asiat as asia (asia.id)}
-            <Asia {asia} on:poista-asia on:asian-valmis-muuttui />
+            <Asia
+                {asia}
+                on:poista-asia={poistaAsia}
+                on:asian-valmis-muuttui={käsitteleValmisMuutos}
+            />
         {/each}
     </ul>
-    <form
-        class="uusi"
-        on:submit|preventDefault={() => {
-            dispatch('uusi-asia', {teksti: uusiAsiaTeksti.trim()});
-            uusiAsiaTeksti = '';
-        }}
-    >
+    <form class="uusi" on:submit|preventDefault={lisääAsia}>
         <label for="uusi-asia">Lisää uusi asia:</label>
         <!-- svelte-ignore a11y-autofocus -->
         <input
