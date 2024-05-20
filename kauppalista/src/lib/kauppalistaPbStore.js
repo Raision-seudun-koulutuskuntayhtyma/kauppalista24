@@ -24,31 +24,34 @@ import {käsitteleMuutokset} from './pbUtils';
 */
 
 export function kauppalistaPbStore(listaId) {
-    const taustaStore = writable({tila: 'ladataan'});
-
     let vanhatIteemit = undefined;
+    let peruKuuntelu = undefined;
 
-    async function lataaKauppalista() {
+    async function lataaKauppalistaJaAloitaMuutostenKuuntelu(setter) {
         try {
             const kauppalistanAsiat = await api.lataaKauppalista(listaId);
             vanhatIteemit = kauppalistanAsiat;
-            taustaStore.set({tila: 'valmis', iteemit: kauppalistanAsiat});
+            setter({
+                tila: 'valmis',
+                iteemit: structuredClone(kauppalistanAsiat),
+            });
         } catch (error) {
             console.error('Virhe:', error);
-            taustaStore.set({
+            setter({
                 tila: 'virhe',
                 virhe: 'Kauppalistaa ei saatu ladattua',
             });
             return;
         }
 
-        await api.kuunteleMuutoksia(listaId, ({action, record}) => {
+        function käsitteleMuutos({action, record}) {
             const idx = vanhatIteemit.findIndex((x) => x.id === record.id);
             let muuttunut = false;
             if (['create', 'update'].includes(action) && idx === -1) {
                 // Uusi tai päivittynyt iteemi, jota ei ollut meidän listalla
                 vanhatIteemit.push(record);
                 muuttunut = true;
+                console.log('Tapahtui muutos: Uusi asia listalle:', record);
             } else if (['create', 'update'].includes(action) && idx !== -1) {
                 // Iteemi, joka oli meidän listalla
                 vanhatIteemit[idx] = record;
@@ -62,14 +65,19 @@ export function kauppalistaPbStore(listaId) {
                 muuttunut = true;
             }
             if (muuttunut)
-                taustaStore.set({
+                setter({
                     tila: 'valmis',
                     iteemit: structuredClone(vanhatIteemit),
                 });
-        });
+        }
+
+        peruKuuntelu = await api.kuunteleMuutoksia(listaId, käsitteleMuutos);
     }
 
-    lataaKauppalista();
+    const taustaStore = writable({tila: 'ladataan'}, (setter) => {
+        lataaKauppalistaJaAloitaMuutostenKuuntelu(setter);
+        return () => peruKuuntelu?.();
+    });
 
     return {
         ...taustaStore,
