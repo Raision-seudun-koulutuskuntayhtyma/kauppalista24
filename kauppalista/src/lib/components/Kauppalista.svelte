@@ -6,7 +6,8 @@
 
     let uusiAsiaTeksti = '';
 
-    const luoId = () => crypto.randomUUID().substring(0, 15);
+    const luoId = () =>
+        Math.random().toString(36).substring(2, 17).padEnd(15, 'X');
 
     function lisääAsia() {
         const asia = {id: luoId(), teksti: uusiAsiaTeksti};
