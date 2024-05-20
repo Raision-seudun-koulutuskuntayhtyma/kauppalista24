@@ -22,6 +22,6 @@
     header,
     main,
     footer {
-        max-width: 40em;
+        max-width: 30em;
     }
 </style>
