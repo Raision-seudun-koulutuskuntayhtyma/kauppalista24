@@ -28,18 +28,21 @@ export function kauppalistaPbStore(listaId) {
 
     let vanhatIteemit = undefined;
 
-    api.lataaKauppalista(listaId)
-        .then((kauppalistanAsiat) => {
+    async function lataaKauppalista() {
+        try {
+            const kauppalistanAsiat = await api.lataaKauppalista(listaId);
             vanhatIteemit = kauppalistanAsiat;
             taustaStore.set({tila: 'valmis', iteemit: kauppalistanAsiat});
-        })
-        .catch((error) => {
+        } catch (error) {
             console.error('Virhe:', error);
             taustaStore.set({
                 tila: 'virhe',
                 virhe: 'Kauppalistaa ei saatu ladattua',
             });
-        });
+        }
+    }
+
+    lataaKauppalista();
 
     return {
         ...taustaStore,
