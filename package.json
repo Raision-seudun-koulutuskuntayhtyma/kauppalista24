@@ -5,9 +5,9 @@
     "main": "index.js",
     "scripts": {
         "format": "prettier --write .",
-        "download-pocketbase": "python download-pocketbase.py",
-        "pb": "cd pocketbase && ./pocketbase serve",
-        "pb-dev": "cd pocketbase && ./pocketbase serve --dev"
+        "get-pocketbase": "python3 get-pocketbase",
+        "pb": "python3 get-pocketbase && cd pocketbase && ./pocketbase serve",
+        "pb-dev": "python3 get-pocketbase && cd pocketbase && ./pocketbase serve --dev"
     },
     "repository": {
         "type": "git",
