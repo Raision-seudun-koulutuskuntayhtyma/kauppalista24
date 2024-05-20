@@ -46,16 +46,15 @@
 
 <style>
     button {
-        font-size: 1.25rem;
-        background-color: hsl(220, 75%, 75%);
-        color: hsl(220, 50%, 5%);
-        opacity: 75%;
+        background-color: var(--pico-secondary-background);
+        color: var(--pico-secondary-inverse);
+        border-width: 0px;
+        opacity: 90%;
         z-index: 100;
         position: fixed;
-        left: 40vw;
+        left: 50%;
+        transform: translateX(-50%);
         top: 1em;
-        display: flex;
-        align-items: center;
         border-radius: 0.5rem;
         padding: 0.5rem 2rem;
     }
