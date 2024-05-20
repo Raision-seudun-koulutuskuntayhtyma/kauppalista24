@@ -1,5 +1,10 @@
 import PocketBase from 'pocketbase';
 
+export async function haeKauppalistat() {
+    const pb = getPocketBase();
+    return await pb.collection('kauppalistat').getFullList();
+}
+
 export async function lataaKauppalista(listaId) {
     const pb = getPocketBase();
     console.log(`Ladataan lista ${listaId} palvelimelta...`);
