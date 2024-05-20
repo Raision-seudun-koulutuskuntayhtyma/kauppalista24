@@ -1,9 +1,6 @@
-<svelte:head>
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
-    />
-</svelte:head>
+<script>
+    import './global.scss';
+</script>
 
 <header>
     <h1>Kauppalistat</h1>
