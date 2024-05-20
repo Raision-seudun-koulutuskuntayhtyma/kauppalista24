@@ -21,6 +21,11 @@
 <style>
     li {
         list-style-type: none;
+        display: flex;
+        align-items: center;
+    }
+    button {
+        margin-left: auto;
     }
     .valmis-rivi {
         text-decoration: line-through;

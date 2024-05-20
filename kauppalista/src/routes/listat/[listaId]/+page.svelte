@@ -8,8 +8,6 @@
     export const kauppalista = kauppalistaPbStore($page.params.listaId);
 </script>
 
-<a href="/">Etusivu</a>
-
 <Ilmoitus />
 
 {#if $kauppalista.tila == 'valmis'}
