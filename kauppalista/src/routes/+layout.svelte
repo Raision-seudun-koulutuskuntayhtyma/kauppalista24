@@ -19,8 +19,9 @@
 <footer></footer>
 
 <style>
-    header, main, footer {
+    header,
+    main,
+    footer {
         max-width: 40em;
-
     }
 </style>

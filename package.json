@@ -1,26 +1,26 @@
 {
-  "name": "kauppalista24",
-  "version": "0.1.0",
-  "description": "Kauppalista",
-  "main": "index.js",
-  "scripts": {
-    "format": "prettier --write .",
-    "download-pocketbase": "python download-pocketbase.py",
-    "pb": "cd pocketbase && ./pocketbase serve",
-    "pb-dev": "cd pocketbase && ./pocketbase serve --dev"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24/issues"
-  },
-  "homepage": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24#readme",
-  "dependencies": {
-    "prettier": "^3.2.5",
-    "prettier-plugin-svelte": "^3.2.3"
-  }
+    "name": "kauppalista24",
+    "version": "0.1.0",
+    "description": "Kauppalista",
+    "main": "index.js",
+    "scripts": {
+        "format": "prettier --write .",
+        "download-pocketbase": "python download-pocketbase.py",
+        "pb": "cd pocketbase && ./pocketbase serve",
+        "pb-dev": "cd pocketbase && ./pocketbase serve --dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24/issues"
+    },
+    "homepage": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24#readme",
+    "dependencies": {
+        "prettier": "^3.2.5",
+        "prettier-plugin-svelte": "^3.2.3"
+    }
 }
