@@ -39,7 +39,34 @@ export function kauppalistaPbStore(listaId) {
                 tila: 'virhe',
                 virhe: 'Kauppalistaa ei saatu ladattua',
             });
+            return;
         }
+
+        await api.kuunteleMuutoksia(listaId, ({action, record}) => {
+            const idx = vanhatIteemit.findIndex((x) => x.id === record.id);
+            let muuttunut = false;
+            if (['create', 'update'].includes(action) && idx === -1) {
+                // Uusi tai päivittynyt iteemi, jota ei ollut meidän listalla
+                vanhatIteemit.push(record);
+                muuttunut = true;
+            } else if (['create', 'update'].includes(action) && idx !== -1) {
+                // Iteemi, joka oli meidän listalla
+                vanhatIteemit[idx] = record;
+                muuttunut = true;
+            } else if (action === 'delete' && idx !== -1) {
+                // Iteemi poistunut, mutta löytyi vielä meidän listalta
+                vanhatIteemit = [
+                    ...vanhatIteemit.slice(0, idx),
+                    ...vanhatIteemit.slice(idx + 1),
+                ];
+                muuttunut = true;
+            }
+            if (muuttunut)
+                taustaStore.set({
+                    tila: 'valmis',
+                    iteemit: structuredClone(vanhatIteemit),
+                });
+        });
     }
 
     lataaKauppalista();
@@ -53,7 +80,7 @@ export function kauppalistaPbStore(listaId) {
                 päivitä: api.päivitäKauppalistanAsia,
                 poista: api.poistaKauppalistanAsia,
             });
-            vanhatIteemit = arvo.iteemit;
+            vanhatIteemit = structuredClone(arvo.iteemit);
         },
     };
 }

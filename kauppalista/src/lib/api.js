@@ -44,6 +44,16 @@ async function haeKauppalistanAsia(pb, listaId, teksti) {
     return response.items.length ? response.items[0] : null;
 }
 
+export async function kuunteleMuutoksia(listaId, callback) {
+    const pb = getPocketBase();
+    const asiat = pb.collection('kauppalistan_asiat');
+    await asiat.subscribe('*', (data) => {
+        if (data.record.lista === listaId) {
+            callback(data);
+        }
+    });
+}
+
 function getPocketBase() {
     return new PocketBase('http://localhost:8090');
 }
