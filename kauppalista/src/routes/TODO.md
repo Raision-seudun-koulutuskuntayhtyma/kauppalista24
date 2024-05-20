@@ -1,1 +1,0 @@
-- TODO: Kauppalistan iteemin poistaminen muuttaa muiden rivien valmis-tilaa
