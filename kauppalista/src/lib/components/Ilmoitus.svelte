@@ -9,13 +9,18 @@
     let näkyvissä = false;
     let ajastimenKahva = undefined;
 
+    function poistaIlmoitus() {
+        $ilmoitus = '';
+        näkyvissä = false;
+    }
+
     function viestinTaiViiveenMuuttuessa(viesti, viiveMs) {
         clearTimeout(ajastimenKahva);
         if (!viesti) {
             näkyvissä = false;
         } else {
             näkyvissä = true;
-            ajastimenKahva = setTimeout(() => (näkyvissä = false), viiveMs);
+            ajastimenKahva = setTimeout(poistaIlmoitus, viiveMs);
         }
     }
     $: viestinTaiViiveenMuuttuessa($ilmoitus, piilotusViiveMs);
@@ -25,7 +30,7 @@
 
 {#if näkyvissä}
     <button
-        on:click={() => (näkyvissä = false)}
+        on:click={poistaIlmoitus}
         transition:fly={{
             delay: 250,
             duration: 500,
