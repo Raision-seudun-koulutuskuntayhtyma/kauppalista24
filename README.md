@@ -3,7 +3,7 @@
 Kauppalistasovellus koodattuna SvelteKitillä ja
 PocketBase-taustajärjestelmällä.
 
-## Kuvankaappaukset
+## Kuvakaappaukset
 
 [<img src="./kuva1.png" height="300" alt="Kuva 1, Vaalea teema">](./kuva1.png)
 [<img src="./kuva2.png" height="300" alt="Kuva 2, Tumma teema">](./kuva2.png)
