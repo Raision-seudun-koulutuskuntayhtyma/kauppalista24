@@ -38,10 +38,17 @@ Tällä hetkellä sovellus tukee seuraavia ominaisuuksia:
   oleva asia aiheuttaa virheen, jota ei ole käsitelty.
 * Sovellus ei osaa luoda kauppalistoja itse, vaan niitä pitää luoda
   PocketBasen hallinnassa.
+* PocketBase:n osoite on kovakoodattu localhost:8090:ksi, joten
+  sovellus ei toimi kuin paikallisessa kehitysympäristössä.
 
 ## Kehitysideoita
 
 * Kauppalistojen luominen ja poistaminen sovelluksen kautta
+* API-kutsujen reitittäminen SvelteKitin kautta PocketBaseen
+  - Tällöin ei tarvittaisi CORS-asetuksia tai preflight-pyyntöjä
+  - Vaihtoehtoisesti koko käyttöliittymäpuolen sovelluksen voisi
+    jakaa PocketBase-palvelimelta staattisena sisältönä, jolloin
+    se olisi samassa osoitteessa PocketBasen kanssa.
 * Käyttäjätunnusten luominen ja kirjautuminen
 * Kauppalistojen rajaaminen käyttäjäkohtaisiksi
 * Kauppalistojen jakaminen muiden käyttäjien kanssa
