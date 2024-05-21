@@ -11,17 +11,16 @@ PocketBase-taustajärjestelmällä.
 ## Asennusohje (kehitysympäristö)
 
 1. Kloonaa tämä repositorio
-2. Käynnistä PocketBase komennolla `npm run pb`
-3. Luo tunnukset ja kirjaudu PocketBasen hallintaan osoitteessa
+2. Asenna paketit: `npm install`
+   - Tämä asentaa PocketBasen ja käyttöliittymän
+3. Käynnistä PocketBase ja käyttöliittymä komennolla `npm start`
+4. Luo tunnukset ja kirjaudu PocketBasen hallintaan osoitteessa
    http://localhost:8090/_/
     - Luo myös PocketBasen hallinnassa yksi tai useami tyhjä kauppalista, sillä
       sovellus ei (vielä) osaa luoda niitä itse. Tämä onnistuu menemällä
       kokoelmaan (collection) `kauppalistat` ja painamalla nappia "New record"
       ja syöttämällä kenttään `nimi` haluamasi nimi.
-4. Asenna käyttöliittymän puoli: `cd kauppalista && npm install`
-5. Käynnistä käyttöliittymä: `npm run dev`
-6. Mene osoitteeseen http://localhost:5173
-
+5. Mene käyttöliittymän osoitteeseen http://localhost:5173
 
 ## Ominaisuudet
 

@@ -5,9 +5,7 @@
     "main": "index.js",
     "scripts": {
         "format": "prettier --write .",
-        "get-pocketbase": "python3 get-pocketbase",
-        "pb": "python3 get-pocketbase && cd pocketbase && ./pocketbase serve",
-        "pb-dev": "python3 get-pocketbase && cd pocketbase && ./pocketbase serve --dev"
+        "start": "npm --prefix pocketbase run dev & npm --prefix kauppalista run dev"
     },
     "repository": {
         "type": "git",
@@ -19,6 +17,10 @@
         "url": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24/issues"
     },
     "homepage": "https://github.com/Raision-seudun-koulutuskuntayhtyma/kauppalista24#readme",
+    "workspaces": [
+        "kauppalista",
+        "pocketbase"
+    ],
     "dependencies": {
         "prettier": "^3.2.5",
         "prettier-plugin-svelte": "^3.2.3"

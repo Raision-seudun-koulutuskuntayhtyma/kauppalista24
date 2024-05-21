@@ -1,9 +1,9 @@
 {
-    "name": "kauppalista",
+    "name": "kauppalista24-frontend",
     "version": "0.0.1",
     "private": true,
     "scripts": {
-        "dev": "vite dev",
+        "dev": "vite dev --clearScreen false",
         "build": "vite build",
         "preview": "vite preview",
         "lint": "prettier --check . && eslint .",

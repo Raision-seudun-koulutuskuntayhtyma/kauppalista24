@@ -1,0 +1,8 @@
+{
+    "name": "kauppalista24-backend",
+    "scripts": {
+        "postinstall": "python3 get-pocketbase",
+        "start": "./pocketbase serve",
+        "dev": "./pocketbase serve --dev"
+    }
+}
