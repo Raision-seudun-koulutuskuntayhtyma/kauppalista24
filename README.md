@@ -13,7 +13,7 @@ PocketBase-taustajärjestelmällä.
 1. Kloonaa tämä repositorio
 2. Käynnistä PocketBase komennolla `npm run pb`
 3. Luo tunnukset ja kirjaudu PocketBasen hallintaan osoitteessa
-   http://localhost:8090/\_/
+   http://localhost:8090/_/
     - Luo myös PocketBasen hallinnassa yksi tai useami tyhjä kauppalista, sillä
       sovellus ei (vielä) osaa luoda niitä itse. Tämä onnistuu menemällä
       kokoelmaan (collection) `kauppalistat` ja painamalla nappia "New record"
