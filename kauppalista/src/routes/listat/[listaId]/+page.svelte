@@ -13,7 +13,8 @@
 {#if $kauppalista.tila == 'valmis'}
     <Kauppalista bind:asiat={$kauppalista.iteemit} />
 {:else if $kauppalista.tila == 'ladataan'}
-    <div>Ladataan...</div>
+    <span aria-busy="true">Ladataan...</span>
+    <progress />
 {:else if $kauppalista.tila == 'virhe'}
     <div>Virhe: {$kauppalista.virhe}</div>
 {/if}

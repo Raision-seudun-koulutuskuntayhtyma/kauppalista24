@@ -5,7 +5,8 @@
 </script>
 
 {#await listatPromise}
-    <div>Ladataan listoja...</div>
+    <div aria-busy="true">Ladataan listoja...</div>
+    <progress />
 {:then listat}
     <ul>
         {#each listat as lista}
