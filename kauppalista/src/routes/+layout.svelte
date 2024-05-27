@@ -1,13 +1,30 @@
 <script>
+    import {page} from '$app/stores';
+
     import './global.scss';
+
+    $: url = $page.route.id;
 </script>
 
 <header>
-    <h1>Kauppalistat</h1>
     <nav>
         <ul>
-            <li><a href="/">Etusivu</a></li>
-            <li><a href="/listat">Listat</a></li>
+            <li>
+                <strong>
+                    Kauppalista24
+                    {#if $page.data.otsikko}
+                        / {$page.data.otsikko}
+                    {/if}
+                </strong>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a href="/" aria-current={url == '/'}>Etusivu</a>
+            </li>
+            <li>
+                <a href="/listat" aria-current={url == '/listat'}>Listat</a>
+            </li>
         </ul>
     </nav>
 </header>
