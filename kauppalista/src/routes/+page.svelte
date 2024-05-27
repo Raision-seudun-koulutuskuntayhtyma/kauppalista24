@@ -1,13 +1,10 @@
 <script>
-    import kuva from './tara-clark-Gk8LG7dsHWA-unsplash.jpg';
+    import kuva from './tara-clark-Gk8LG7dsHWA-unsplash.jpg?enhanced&w=1920;960;640';
 
     const kuvaUrl =
         'https://unsplash.com/photos/woman-in-white-coat-holding-green-shopping-cart-Gk8LG7dsHWA';
     const kuvaaja = 'Tara Clark';
     const kuvaajaUrl = 'https://unsplash.com/@socialtyvr';
-
-    // TODO: Nopeuta kuvien latausta enhanced-img:n avulla:
-    // https://kit.svelte.dev/docs/images
 </script>
 
 <h1>Tervetuloa!</h1>
@@ -16,7 +13,7 @@
 
 <figure>
     <a href="/listat">
-        <img src={kuva} alt="Henkilö tekemässä ostoksia kaupassa" />
+        <enhanced:img src={kuva} alt="Henkilö tekemässä ostoksia kaupassa" />
     </a>
     <figcaption>
         Kuva: <a href={kuvaajaUrl}>{kuvaaja}</a>,
