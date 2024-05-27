@@ -5,7 +5,7 @@ import sys
 import urllib.request
 import zipfile
 
-PB_VER = "0.22.9"
+PB_VER = "0.22.12"
 PB_BASE_URL = "https://github.com/pocketbase/pocketbase/releases/download"
 
 
