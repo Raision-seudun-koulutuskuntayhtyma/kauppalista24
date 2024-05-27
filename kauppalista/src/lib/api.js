@@ -5,7 +5,7 @@ export async function haeKauppalistat() {
     return await pb.collection('kauppalistat').getFullList();
 }
 
-export async function lataaKauppalista(listaId) {
+export async function lataaKauppalistanAsiat(listaId) {
     const pb = getPocketBase();
     console.log(`Ladataan lista ${listaId} palvelimelta...`);
     const asiat = pb.collection('kauppalistan_asiat');

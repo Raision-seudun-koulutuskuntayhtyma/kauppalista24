@@ -29,7 +29,8 @@ export function kauppalistaPbStore(listaId) {
 
     async function lataaKauppalistaJaAloitaMuutostenKuuntelu(setter) {
         try {
-            const kauppalistanAsiat = await api.lataaKauppalista(listaId);
+            const kauppalistanAsiat =
+                await api.lataaKauppalistanAsiat(listaId);
             vanhatIteemit = kauppalistanAsiat;
             setter({
                 tila: 'valmis',
