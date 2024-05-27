@@ -1,6 +1,7 @@
 @use '@picocss/pico/scss/pico' with (
     $theme-color: 'lime',
     $enable-semantic-container: true,
+    $semantic-root-element: '#root',
     $enable-classes: false
 );
 
