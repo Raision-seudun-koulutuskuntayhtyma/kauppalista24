@@ -5,6 +5,12 @@ export async function haeKauppalistat() {
     return await pb.collection('kauppalistat').getFullList();
 }
 
+export async function lataaKauppalista(listaId) {
+    const pb = getPocketBase();
+    const kauppalistat = pb.collection('kauppalistat');
+    return await kauppalistat.getOne(listaId);
+}
+
 export async function lataaKauppalistanAsiat(listaId) {
     const pb = getPocketBase();
     console.log(`Ladataan lista ${listaId} palvelimelta...`);
