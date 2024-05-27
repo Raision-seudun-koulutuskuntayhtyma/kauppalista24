@@ -43,6 +43,13 @@ Tällä hetkellä sovellus tukee seuraavia ominaisuuksia:
 ## Kehitysideoita
 
 * Kauppalistojen luominen ja poistaminen sovelluksen kautta
+* Offline-käyttö
+  - Tallenna kauppalistat localStorageen
+  - Tallenna tehdyt muutokset listoihin localStorageen, jos ei ole
+    yhteyttä palvelimeen.  Synkronoi muutokset palvelimelle, kun yhteys
+    palaa.
+  - Tee Service Worker, jotta app toimii kokonaan ilman nettiä.
+    - https://kit.svelte.dev/docs/service-workers
 * API-kutsujen reitittäminen SvelteKitin kautta PocketBaseen
   - Tällöin ei tarvittaisi CORS-asetuksia tai preflight-pyyntöjä
   - Vaihtoehtoisesti koko käyttöliittymäpuolen sovelluksen voisi
