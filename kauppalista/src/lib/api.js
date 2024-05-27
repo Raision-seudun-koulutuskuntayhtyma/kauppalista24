@@ -5,10 +5,10 @@ export async function haeKauppalistat() {
     return await pb.collection('kauppalistat').getFullList();
 }
 
-export async function lataaKauppalista(listaId) {
+export async function lataaKauppalista(listaId, fetch = undefined) {
     const pb = getPocketBase();
     const kauppalistat = pb.collection('kauppalistat');
-    return await kauppalistat.getOne(listaId);
+    return await kauppalistat.getOne(listaId, {fetch});
 }
 
 export async function lataaKauppalistanAsiat(listaId) {
