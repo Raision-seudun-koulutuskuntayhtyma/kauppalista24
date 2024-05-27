@@ -1,5 +1,34 @@
 @use '@picocss/pico/scss/pico' with (
-    $theme-color: 'pumpkin',
+    $theme-color: 'lime',
     $enable-semantic-container: true,
     $enable-classes: false
 );
+
+:root {
+    --pico-border-radius: 0.75rem;
+    --pico-form-element-spacing-vertical: 0.5rem;
+}
+
+[data-theme='light'],
+:root:not([data-theme='dark']) {
+    --pico-primary-hover: color-mix(in srgb, black 65%, var(--pico-primary));
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --pico-primary-hover: color-mix(
+            in srgb,
+            white 70%,
+            var(--pico-primary)
+        );
+    }
+}
+[data-theme='dark'] {
+    :root:not([data-theme]) {
+        --pico-primary-hover: color-mix(
+            in srgb,
+            white 70%,
+            var(--pico-primary)
+        );
+    }
+}
