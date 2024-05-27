@@ -1,5 +1,4 @@
-# Ignore files for PNPM, NPM and YARN
-README.md
+*.md
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
