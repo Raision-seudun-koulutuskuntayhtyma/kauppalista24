@@ -10,28 +10,21 @@ PB_BASE_URL = "https://github.com/pocketbase/pocketbase/releases/download"
 
 
 def main():
-    url = get_pocketbase_url()
-    download_and_unzip(url)
-
-
-def get_pocketbase_url():
     cpu = platform.processor()
     arch = {"x86_64": "amd64", "arm": "arm64"}.get(cpu, cpu)
     plat = {"win32": "windows"}.get(sys.platform, sys.platform)
-    return f"{PB_BASE_URL}/v{PB_VER}/pocketbase_{PB_VER}_{plat}_{arch}.zip"
+    zip_fn = f"pocketbase_{PB_VER}_{plat}_{arch}.zip"
+    url = f"{PB_BASE_URL}/v{PB_VER}/{zip_fn}"
 
-
-def download_and_unzip(url):
-    zip_filename = url.rsplit("/", 1)[-1]
-    is_new_zip_file = not os.path.exists(zip_filename)
+    is_new_zip_file = not os.path.exists(zip_fn)
     if is_new_zip_file:
         print(f"Downloading PocketBase from: {url}")
-        urllib.request.urlretrieve(url, zip_filename)
-    exe_suffix = ".exe" if sys.platform == "win32" else ""
-    pb_exe = f"pocketbase{exe_suffix}"
+        urllib.request.urlretrieve(url, zip_fn)
+
+    pb_exe = f"pocketbase{'.exe' if sys.platform == 'win32' else ''}"
     if is_new_zip_file or not os.path.exists(pb_exe):
-        print(f"Unzipping {zip_filename}")
-        with zipfile.ZipFile(zip_filename, "r") as zipf:
+        print(f"Unzipping {zip_fn}")
+        with zipfile.ZipFile(zip_fn, "r") as zipf:
             zipf.extractall()
             if not pb_exe.endswith(".exe"):
                 os.chmod(pb_exe, 0o777 & ~os.umask(0o022))
