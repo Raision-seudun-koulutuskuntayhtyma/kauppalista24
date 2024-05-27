@@ -13,15 +13,20 @@
 
 <figure>
     <a href="/listat">
-        <enhanced:img src={kuva} alt="Henkilö tekemässä ostoksia kaupassa" />
+        <enhanced:img
+            src={kuva}
+            alt="Henkilö tekemässä ostoksia kaupassa"
+            class="kuva"
+        />
     </a>
     <figcaption>
         Kuva: <a href={kuvaajaUrl}>{kuvaaja}</a>,
         <a href={kuvaUrl}>Unsplash</a>
     </figcaption>
 </figure>
+
 <style>
-    img {
+    .kuva {
         border-radius: var(--pico-border-radius);
     }
     figcaption {
