@@ -5,6 +5,12 @@
     $enable-classes: false
 );
 
+@media (min-width: 768px) {
+    body > #root > * {
+        max-width: 30em;
+    }
+}
+
 :root {
     --pico-border-radius: 0.75rem;
     --pico-form-element-spacing-vertical: 0.5rem;

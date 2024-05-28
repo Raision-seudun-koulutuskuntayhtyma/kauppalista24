@@ -34,11 +34,3 @@
 </main>
 
 <footer></footer>
-
-<style>
-    header,
-    main,
-    footer {
-        max-width: 30em;
-    }
-</style>
