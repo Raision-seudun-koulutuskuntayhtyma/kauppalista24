@@ -39,7 +39,7 @@
                 id="uusi-asia"
                 name="asia"
                 type="text"
-                placeholder="Uusi asia"
+                placeholder="Uusi asia..."
                 bind:value={uusiAsiaTeksti}
                 required
                 autofocus
